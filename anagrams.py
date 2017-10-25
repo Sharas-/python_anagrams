@@ -12,6 +12,7 @@ from collections import defaultdict
 
 #Implementation hinges on the idea that sorted characters of words that are anagrams are equal. 
 #So input words can be indexed by same character-sorted key.
+#It is thread safe, because data is only read, not modified, after anagram object creation.
 
 class Anagrams:
     """Map of anagrams for a set of words."""
