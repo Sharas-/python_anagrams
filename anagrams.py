@@ -43,18 +43,24 @@ class TestAnagrams(unittest.TestCase):
 
     def test_only_same_lenght_words_returned_as_anagrams(self):
         a = Anagrams(['eat', 'tea', 'tear'])
-        self.assertTrue(set(a.get_anagrams('eat')) == set(['eat', 'tea']))
+        self.assertTrue(set(a.get_anagrams('eat')) == {'eat', 'tea'})
         self.assertTrue(a.get_anagrams('tear') == ['tear'])
 
     def test_empty_list_returned_when_no_anagrams_found(self):
         a = Anagrams(['plate', 'state', 'great'])
         self.assertTrue(a.get_anagrams('greet') == [])
         
+    def test_anagrams_can_be_looked_up_by_any_anagram_word(self):
+        a = Anagrams(['ate', 'eat', 'tea'])
+        self.assertTrue(set(a.get_anagrams('ate')) == {'ate', 'eat', 'tea'})
+        self.assertTrue(set(a.get_anagrams('eat')) == {'ate', 'eat', 'tea'})
+        self.assertTrue(set(a.get_anagrams('tea')) == {'ate', 'eat', 'tea'})
+
     def test_anagrams(self):
         with open('words.txt') as w:
             anagrams = Anagrams(w.read().splitlines())
-        self.assertEqual(set(anagrams.get_anagrams('plates')), set(['palest', 'pastel', 'petals', 'plates', 'staple']))
-        self.assertEqual(set(anagrams.get_anagrams('eat')), set(['ate', 'eat', 'tea']))
+        self.assertEqual(set(anagrams.get_anagrams('plates')), {'palest', 'pastel', 'petals', 'plates', 'staple'})
+        self.assertEqual(set(anagrams.get_anagrams('eat')), {'ate', 'eat', 'tea'})
 
 if __name__ == '__main__':
     unittest.main()
