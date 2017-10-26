@@ -56,6 +56,10 @@ class TestAnagrams(unittest.TestCase):
         self.assertTrue(set(a.get_anagrams('eat')) == {'ate', 'eat', 'tea'})
         self.assertTrue(set(a.get_anagrams('tea')) == {'ate', 'eat', 'tea'})
 
+    def test_case_of_lookup_word_doesnt_matter(self):
+        a = Anagrams(['own', 'won', 'now'])
+        self.assertTrue(set(a.get_anagrams('WoN')) == {'own', 'won', 'now'})
+
     def test_anagrams(self):
         with open('words.txt') as w:
             anagrams = Anagrams(w.read().splitlines())
